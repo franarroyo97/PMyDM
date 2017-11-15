@@ -1,0 +1,8 @@
+composer.phar
+/vendor/
+.env
+
+# IDE crap
+.buildpath
+.project
+.settings/

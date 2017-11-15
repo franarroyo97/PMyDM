@@ -1,0 +1,37 @@
+{
+    "name": "chucknorris/api",
+    "description": "chucknorris.io is a free JSON API for hand curated Chuck Norris facts.",
+    "homepage": "https://api.chucknorris.io",
+    "keywords": ["Chuck", "Norris", "Chuck Norris", "Chuck Norris Jokes"],
+    "license": "GPL-3.0+",
+    "require": {
+        "php": "~7.0",
+        "bramdevries/oauth2-slack": "~0.1",
+        "bramus/monolog-colored-line-formatter": "^2.0",
+        "chucknorris/lib": "~0.5",
+        "facebook/graph-sdk": "^5.3",
+        "monolog/monolog": "~1",
+        "nochso/html-compress-twig": "~1",
+        "silex/silex": "~1.1",
+        "symfony/config": "~3.0",
+        "symfony/yaml": "~3.0",
+        "twig/twig": "~1.2",
+        "vlucas/phpdotenv": "^2.3",
+        "predis/predis": "^1.1"
+    },
+    "repositories": [{
+        "type": "vcs",
+        "url": "https://github.com/chucknorris-io/chuck-lib.git"
+    }],
+    "autoload": {
+        "psr-4": {
+            "Chuck\\App\\": "src"
+        }
+    },
+    "prefer-stable": true,
+    "minimum-stability": "dev",
+    "scripts": {
+        "compile": "bin/populate_cache",
+        "serve": "bin/start.sh"
+    }
+}

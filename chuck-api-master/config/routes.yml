@@ -1,0 +1,61 @@
+api :
+    path     : /
+    methods  : GET
+    defaults :
+        _controller : \Chuck\App\Api\Controller\IndexController::indexAction
+
+privacy :
+    path     : /privacy
+    methods  : GET
+    defaults :
+        _controller : \Chuck\App\Api\Controller\PrivacyController::indexAction
+
+connect:
+    prefix   : /connect/
+    resource : routes/connect.yml
+
+api.create_joke :
+    path     : /jokes
+    methods  : POST
+    defaults :
+        _controller : \Chuck\App\Api\Controller\JokesController::createAction
+    options  :
+        _before_middlewares : [ \Chuck\App\Api\Middleware\Authorization::write, \Chuck\App\Api\Middleware\RequestBodyParser::parse ]
+
+jokes:
+    prefix   : /jokes
+    resource : routes/jokes.yml
+
+api.intg_alexa :
+    path     : /integration/alexa
+    methods  : [GET, POST]
+    defaults :
+        _controller : \Chuck\App\Api\Controller\Integration\AlexaController::indexAction
+    options  :
+        _before_middlewares : [ \Chuck\App\Api\Middleware\RequestBodyParser::parse, \Chuck\App\Api\Middleware\Verification::alexaOrigin ]
+
+api.intg_facebook_verify :
+    path     : /integration/facebook
+    methods  : GET
+    defaults :
+        _controller : \Chuck\App\Api\Controller\Integration\FacebookController::subscribeAction
+
+api.intg_facebook :
+    path     : /integration/facebook
+    methods  : POST
+    defaults :
+        _controller : \Chuck\App\Api\Controller\Integration\FacebookController::indexAction
+    options  :
+        _before_middlewares : [ \Chuck\App\Api\Middleware\RequestBodyParser::parse ]
+
+sitemap.index :
+    path      : /sitemaps/index.xml
+    methods   : GET
+    defaults  :
+        _controller : \Chuck\App\Api\Controller\SitemapController::indexAction
+
+sitemap.jokes :
+    path      : /sitemaps/jokes-{page}.xml
+    methods   : GET
+    defaults  :
+        _controller : \Chuck\App\Api\Controller\SitemapController::jokesAction
